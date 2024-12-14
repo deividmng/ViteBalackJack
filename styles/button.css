@@ -1,0 +1,112 @@
+/* Imagen dentro del botón con efecto colorido */
+#bet-five-btn,
+#bet-ten-btn,
+#bet-twentyfive-btn,
+#bet-fifty-btn,
+#bet-hundred-btn,
+#bet-twofifty-btn {
+    width: 50px;  /* Ajusta el tamaño de la imagen según sea necesario */
+    height: 50px;  /* Ajusta el tamaño de la imagen según sea necesario */
+    cursor: pointer;  /* Cambia el cursor al pasar sobre la imagen */
+    filter: saturate(2);  /* Aumenta la saturación de la imagen para hacerla más colorida */
+    transition: transform 0.3s, filter 0.3s;  /* Añade una transición suave para el efecto */
+}
+
+/* Efecto al pasar el ratón por encima */
+#bet-five-btn:hover {
+    filter: saturate(3);  /* Aumenta la saturación al pasar el ratón por encima */
+    transform: rotate(360deg) scale(1.1);  /* Realiza un giro de 360 grados y agranda la imagen al pasar el ratón por encima */
+}
+
+#bet-ten-btn:hover {
+    filter: saturate(23);  /* Aumenta la saturación al pasar el ratón por encima */
+    transform: rotate(360deg) scale(1.1);  /* Realiza un giro de 360 grados y agranda la imagen al pasar el ratón por encima */
+}
+
+#bet-twentyfive-btn:hover {
+    filter: saturate(53);  /* Aumenta la saturación al pasar el ratón por encima */
+    transform: rotate(360deg) scale(1.1);  /* Realiza un giro de 360 grados y agranda la imagen al pasar el ratón por encima */
+}
+
+#bet-fifty-btn:hover {
+    filter: saturate(96);  /* Aumenta la saturación al pasar el ratón por encima */
+    transform: rotate(360deg) scale(1.1);  /* Realiza un giro de 360 grados y agranda la imagen al pasar el ratón por encima */
+}
+
+#bet-hundred-btn:hover {
+    filter: saturate(111);  /* Aumenta la saturación al pasar el ratón por encima */
+    transform: rotate(360deg) scale(1.1);  /* Realiza un giro de 360 grados y agranda la imagen al pasar el ratón por encima */
+}
+
+#bet-twofifty-btn:hover {
+    filter: saturate(188);  /* Aumenta la saturación al pasar el ratón por encima */
+    transform: rotate(360deg) scale(1.1);  /* Realiza un giro de 360 grados y agranda la imagen al pasar el ratón por encima */
+}
+
+
+
+
+
+/* Estilos para el contenedor de la imagen y el número */
+.bet-button {
+    position: relative;
+    display: inline-block;
+    width: 50px;  /* Ajusta el tamaño según sea necesario */
+    height: 50px;  /* Ajusta el tamaño según sea necesario */
+    cursor: pointer;  /* Cambia el cursor al pasar sobre el contenedor */
+    margin: 5px;  /* Espaciado entre los botones */
+  
+}
+
+.bet-button img {
+    width: 100%;
+    height: 100%;
+    filter: saturate(2);  /* Aumenta la saturación de la imagen para hacerla más colorida */
+    transition: transform 0.3s, filter 0.3s;  /* Añade una transición suave para el efecto */
+}
+
+.bet-button span {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);  /* Centra el número */
+    color: black;  /* Color del texto */
+    font-weight: bold;  /* Negrita para el texto */
+    font-size: 18px;  /* Tamaño de la fuente */
+}
+
+
+
+#bet-five-btn span {
+    color: rgb(72, 159, 25); /* Color para la apuesta de 5 */
+}
+
+#bet-ten-btn span {
+    color: rgb(25, 72, 159); /* Color para la apuesta de 10 */
+}
+
+#bet-twentyfive-btn span {
+    color: rgb(122, 11, 50); /* Color para la apuesta de 25 */
+}
+
+#bet-fifty-btn span {
+    color: rgb(255, 0, 0); /* Color para la apuesta de 50 */
+}
+
+#bet-hundred-btn span {
+    color: rgb(0, 255, 0); /* Color para la apuesta de 100 */
+}
+
+#bet-twofifty-btn span {
+    color: rgb(0, 0, 255); /* Color para la apuesta de 250 */
+}
+
+
+/* Efecto al pasar el ratón por encima */
+.bet-button:hover img {
+    transform: scale(1.1);  /* Agranda la imagen al pasar el ratón por encima */
+    filter: saturate(3);  /* Aumenta aún más la saturación cuando el ratón está sobre la imagen */
+}
+
+
+
