@@ -1,6 +1,5 @@
- const finalReault = document.getElementById("final-result");
 
-
+ const message = document.querySelector(".message");
  export function calculateValue() {
     //! combirtiendo el valor a num 
     const sumPlayer = parseInt(document.getElementById("sum-player").textContent); // Obtener el total del jugador
@@ -8,22 +7,22 @@
   
     if (sumPlayer > 21) {
       // El jugador ha excedido 21
-      finalReault.textContent ="Perdiste, te pasaste de 21."
+      message.textContent ="Perdiste, te pasaste de 21."
       console.log("Perdiste, te pasaste de 21.");
     // } else if (sumDealer > 21) {
     //   // El dealer ha excedido 21
     //   console.log("¡Ganaste, el dealer se pasó de 21!");
     } else if (sumPlayer > sumDealer) {
-        finalReault.textConten ="!Ganastes"
+        message.textConten ="!Ganastes"
       // El jugador tiene un total mayor que el dealer
       console.log("¡Ganaste!");
     } else if (sumPlayer < sumDealer) {
-        finalReault.textConten = "Perdistes"
+        message.textConten = "Perdistes"
       // El dealer tiene un total mayor que el jugador
       console.log("Perdiste.");
     } else {
       // en el caso de empate 
-      finalReault.textConten = "Tie"
+      message.textConten = "Tie"
       console.log("Es un empate.");
     }
   }

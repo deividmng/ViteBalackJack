@@ -9,49 +9,52 @@
     <title>Vite App</title>
   </head>
   
-
-    <h1>ddd</h1>
-  
-
-    <p id="sum-dealer">00</p> <!--- el p esta por fuera al echo que se me estaba sobrecrbiendo-->
-    <section id="dealer-container">
-      
-    </section>
-   
-    
-
-    <div class="message">
-      <h2>you bust</h2>
-      <button class="try-again">
-        try afain
-      </button>
-    </div>
-
+  <header>
     <p id="chips">
       200
     </p>
+  </header>
+  
+  <section class="dealer-section">
+    <div id="dealer-container">
+      <!-- Las cartas del dealer se mostrarán aquí -->
+    </div>
+    <p id="sum-dealer">0</p> <!-- Total del dealer -->
+  </section>
+  
+    
 
+  <div class="message">
+    <h2></h2>
+  </div>
+   
     <p class="total" id="total">0</p>
 
-    <main> 
 
-      <button id="start-Game">starGame</button>
-      <div id="cards-player"></div>
-      <p id="sum-player">0</p>
       
-    </main>
+     
+    <!-- Player Section -->
+<section class="player-section">
+  <div id="cards-player" class="card-container">
+    <!-- Player's cards will be displayed here -->
+  </div>
+  <p id="sum-player">0</p> <!-- Player's total -->
 
-    <button id="new-card">NEW CARD</button>
+  <!-- Bet Buttons Section -->
+  <section id="bet-buttons">
+    <!-- Bet buttons go here -->
+  </section>
 
-    <h2 id="final-result">
-      whin or lose 
-    </h2>
+  <button id="start-Game">Start Game</button>
+  <button id="clear-bet">Clear</button>
+</section>
+      
 
 
-    <section id="bet-buttons">
-      <div class="bet-button" id="bet-five-btn">
-        <img src="/src/assets/imgs/chip.png" alt="Bet 5">
-        <span>5</span>
+   <section id="bet-buttons">
+     <div class="bet-button" id="bet-five-btn">
+       <img src="/src/assets/imgs/chip.png" alt="Bet 5">
+       <span>5</span>
       </div>
       <div class="bet-button" id="bet-ten-btn">
         <img src="/src/assets/imgs/chip.png" alt="Bet 10">
@@ -74,8 +77,12 @@
         <span>250</span>
       </div>
     </section>
+  
+
+    <button id="new-card">NEW CARD</button>
     
   
+
     
    
  
@@ -83,7 +90,7 @@
 
 
     <!-- <button id="getRandonCard" >getRandonCard</button> -->
-
+    <span id="counter-el"></span>
 
   </body>
 </html>
