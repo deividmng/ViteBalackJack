@@ -2,6 +2,7 @@ import "../styles/main.css";
 import { getDeck, deckId } from './url.js';  // Importamos la función y la variable
 import { initializeBetButtons ,getTotal ,resetTotal,win} from "./betButtons.js"; // calling the bet 
 // import{  calculateValue} from "./calculateValue"
+ import{increaseProgress} from "./progressBar.js";
 
 
 //! I`m  making this funcion to don't show the main area until I dont prest the button starGame()
@@ -248,12 +249,14 @@ stand.addEventListener("click", async function() {
     // El jugador se pasa (pierde)
     message = "You Busted! Dealer Wins!";
     // Aquí podrías incluir lógica para perder la apuesta si lo deseas
-    console.log('perdieste')
+    console.log('perdieste');
+    increaseProgress();
   } else if (totalDealer > 21) {
     // El dealer se pasa (gana el jugador)
     message = "Dealer Busted! You Win!";
     console.log('perdieste')
     resetTotal(); // Reinicia el total (asegúrate de que esta función esté definida)
+    increaseProgress();
     // calculateValue()
     // Aquí podrías incluir lógica para ganar la apuesta si lo deseas
   } else if (total > totalDealer) {
@@ -261,6 +264,8 @@ stand.addEventListener("click", async function() {
     message = "You Win!";
     console.log('you win calling from stan')
     win()
+    increaseProgress()
+    increaseProgress();
     // Aquí podrías incluir lógica para ganar la apuesta si lo deseas
   } else if (total < totalDealer) {
     // El dealer gana
@@ -321,5 +326,6 @@ function resetGameAfterDelay() {
     console.log("Juego reiniciado");
   }, 2000);  // El retraso es de 1000 milisegundos (1 segundo)
 }
+
 
 

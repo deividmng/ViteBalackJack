@@ -99,6 +99,9 @@ button:focus-visible {
 @import url("button.css");
 @import url("player.css");
 @import url("dealer.css");
+@import url("progress.css");
+
+
 
 
 #cards-player {
