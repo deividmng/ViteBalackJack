@@ -14,6 +14,8 @@ export function getTotal() {
 }
 
 // Función para reiniciar el total
+//! use to as well for the lose function  
+
 export function resetTotal() {
     total = 0;
     totalCount.textContent = total; // Reinicia el total mostrado en el DOM
@@ -25,11 +27,33 @@ export function bet(amount) {
         total += amount;
         chips -= amount; // Reduce las fichas
         totalCount.textContent = total; // Actualiza el total en el DOM
-        chipsCount.textContent = chips; // Actualiza las fichas en el DOM
+        chipsCount.textContent = `chips ${chips} `; // Actualiza las fichas en el DOM
     } else {
         alert("No tienes suficientes fichas para realizar esta apuesta."); // Muestra un mensaje de error
     }
 }
+export function win() {
+    // Multiplicar el total por 2 y guardarlo en la variable 'winnings'
+    let winnings = total * 2;
+
+    // Actualizar el total de las fichas y el total de la apuesta
+    chips += winnings; // Agregar las ganancias a las fichas del jugador
+    total = 0; // Reiniciar el total de la apuesta (si deseas hacerlo)
+
+    // Actualizar el DOM con los nuevos valores
+    chipsCount.textContent = `chips ${chips} `;  // Actualiza el valor de las fichas en el DOM
+    totalCount.textContent = total;  // Reinicia el valor de total en el DOM (si lo deseas reiniciar)
+  
+    // Imprimir el resultado para verificar en la consola
+    console.log('Resultado después de ganar:');
+    console.log('Winnings: ', winnings);
+    console.log('Total (debe ser 0 ahora): ', total);
+    console.log('Chips después de ganar: ', chips);
+}
+
+
+
+
 
 // Función para asignar eventos a los botones
 export function initializeBetButtons() {
@@ -50,7 +74,7 @@ clearBet.addEventListener("click", function() {
   // Reiniciar el total de la apuesta
   total = 0;
   // Actualizar el DOM con los nuevos valores
-  chipsCount.textContent = chips;
+  chipsCount.textContent = `chips ${chips} `;
   totalCount.textContent = total;
 
   // Logs para depuración
@@ -67,7 +91,7 @@ let counter = 10; // Tiempo en segundos
 // Incrementar chips cada minuto
 setInterval(function () {
   chips += 10; // Incrementar chips en 10 cada minuto
-  chipsCount.textContent = chips;
+  chipsCount.textContent = `chips ${chips} `;
   console.log("Chips después de limpiar: ", chips);
   localStorage.setItem("chips", chips); // Guardar las fichas en localStorage
 }, 10000); // 60000 milisegundos = 1 minuto

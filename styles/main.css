@@ -128,3 +128,25 @@ button:focus-visible {
 
 
 
+#betContainer {
+  position: relative; /* Permite que los elementos dentro puedan posicionarse relativos a este contenedor */
+  display: flex; /* Usamos flexbox */
+  justify-content: center; /* Centra la imagen horizontalmente */
+  align-items: center; /* Centra la imagen verticalmente */
+}
+
+#betImage {
+  width: 60px; /* Ajusta el tamaño de la imagen */
+  height: 60px; /* Ajusta el tamaño de la imagen */
+}
+
+#total {
+  position: absolute; /* Posiciona el texto de forma absoluta dentro del contenedor */
+  top: 50%; /* Coloca el texto a la mitad del contenedor verticalmente */
+  left: 50%; /* Coloca el texto a la mitad del contenedor horizontalmente */
+  transform: translate(-50%, -50%); /* Ajusta para centrar el texto de forma exacta */
+  margin: 0; /* Elimina cualquier margen por defecto */
+  color: rgb(26, 22, 22); /* Cambia el color del texto según sea necesario */
+  font-size: 20px; /* Ajusta el tamaño de la fuente según sea necesario */
+}
+

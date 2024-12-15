@@ -11,44 +11,50 @@
   
   <header>
     <p id="chips">
-      200
+       chips:200
     </p>
   </header>
   
-  <section class="dealer-section">
-    <div id="dealer-container">
-      <!-- Las cartas del dealer se mostrarán aquí -->
-    </div>
-    <p id="sum-dealer">0</p> <!-- Total del dealer -->
-  </section>
-  
+ 
     
 
   <div class="message">
     <h2></h2>
   </div>
-   
+
+  <div id="betContainer">
+    <img id="betImage" src="./src/assets/imgs/chip.png" alt="Bet Image">
     <p class="total" id="total">0</p>
-
-
-      
-     
-    <!-- Player Section -->
-<section class="player-section">
-  <div id="cards-player" class="card-container">
-    <!-- Player's cards will be displayed here -->
   </div>
-  <p id="sum-player">0</p> <!-- Player's total -->
+   
+    
 
-  <!-- Bet Buttons Section -->
-  <section id="bet-buttons">
-    <!-- Bet buttons go here -->
-  </section>
 
-  <button id="start-Game">Start Game</button>
-  <button id="clear-bet">Clear</button>
-</section>
       
+    <main id="main-area">
+
+      <section class="dealer-section">
+        <div id="dealer-container">
+          <!-- Las cartas del dealer se mostrarán aquí -->
+        </div>
+        <p id="sum-dealer">0</p> <!-- Total del dealer -->
+      </section>
+      
+      <!-- Player Section -->
+      <section class="player-section">
+        <div id="cards-player" class="card-container">
+          <!-- Player's cards will be displayed here -->
+        </div>
+        <p id="sum-player">0</p> <!-- Player's total -->
+      </section>
+    </main>
+      
+ 
+
+  <div id="buttons-start">
+    <button id="start-Game">Start Game</button>
+  <button id="clear-bet">Clear</button>  
+  </div>
 
 
    <section id="bet-buttons">
@@ -79,7 +85,11 @@
     </section>
   
 
-    <button id="new-card">NEW CARD</button>
+    <div id="buttos-play-game">
+
+      <button id="new-card">NEW CARD</button>
+      <button id="stand">Stand</button>
+    </div>
     
   
 
