@@ -110,3 +110,15 @@
 
 
 
+
+
+#bet-buttons {
+  display: flex;
+  justify-content: center; /* Center the buttons horizontally */
+  align-items: center; /* Center the buttons vertically */
+  flex-wrap: wrap; /* Allow buttons to wrap to the next line if needed */
+  gap: 10px; /* the space bettew them */
+  margin-top: 10px;
+}
+
+

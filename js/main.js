@@ -13,8 +13,8 @@ getDeck().then(() => {
 //* CALLING THE DIV OD THE PLAYER TO BE AVAILEBE TO OPEN SHOW THE CARDS
 const startGame = document.getElementById("start-Game");
 const cardsContiner = document.getElementById("cards-player");
-const main = document.querySelector("main");
-const message = document.querySelector(".message");
+//! here is the message 
+ const  message = document.querySelector(".message");
 
 //* calling the sum for dealer and the player
 
@@ -60,8 +60,8 @@ startGame.onclick = async function () {
 
   // Verificar si el total excede 21
   if (total > 21) {
-    main.style.filter = "blue(4px)";
-    message.style.display = "block";
+
+     message.style.display = "block";
     resetTotal(); // Reinicia el total (asegúrate de que esta función esté definida)
   }
 
@@ -165,7 +165,7 @@ newCard.addEventListener("click", async function() {
 
    // Verificar si el total excede 21
    if (total > 21) {
-    main.style.filter = "blue(4px)";
+    message.style.filter = "blue(4px)";
     message.style.display = "block";
     resetTotal(); // Reinicia el total (asegúrate de que esta función esté definida)
     calculateValue()
@@ -178,3 +178,23 @@ newCard.addEventListener("click", async function() {
 
 
 
+//! the clear seccion 
+// const clearBet = document.getElementById("clear-bet");
+
+// function clearBet() {
+//   document.getElementById("clear-bet").addEventListener("click", function () {
+//     chips += amount;
+//     chipsCount.textContent = chips;
+//     console.log('Botón "Clear Bet" presionado');
+//   });
+// }
+
+
+
+// function clearBet() {
+//   document.getElementById("clear-bet").addEventListener("click", function () {
+//     chips += amount;
+//     chipsCount.textContent = chips;
+//     console.log('Botón "Clear Bet" presionado');
+//   });
+// }

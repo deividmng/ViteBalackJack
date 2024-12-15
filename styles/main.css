@@ -97,12 +97,34 @@ button:focus-visible {
 
 
 @import url("button.css");
+@import url("player.css");
+@import url("dealer.css");
 
 
 #cards-player {
-  height: 100px;
+  height: 150px;
 }
 
 .message {
-  display: none;
+  display: flex;
 }
+
+.card-container {
+  display: flex;
+  gap: 10px;
+  justify-content: center; /* Centers the cards horizontally */
+  align-items: center; /* Centers the cards vertically */
+  margin: 10px 0;
+  padding: 30px;
+  background-color: #f8f9fa;
+}
+
+.card-container img {
+  height: 150px; /* Adjust the size of the cards */
+  width: auto;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border-radius: 4px;
+}
+
+
+

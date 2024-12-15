@@ -40,3 +40,57 @@ export function initializeBetButtons() {
     document.getElementById("bet-hundred-btn").addEventListener("click", () => bet(100));
     document.getElementById("bet-twofifty-btn").addEventListener("click", () => bet(250));
 }
+
+const clearBet = document.getElementById("clear-bet");
+
+// Listener para limpiar la apuesta
+clearBet.addEventListener("click", function() {
+  // Sumar la apuesta total de nuevo a las fichas
+  chips += total; 
+  // Reiniciar el total de la apuesta
+  total = 0;
+  // Actualizar el DOM con los nuevos valores
+  chipsCount.textContent = chips;
+  totalCount.textContent = total;
+
+  // Logs para depuración
+  console.log("Total después de limpiar: ", total);
+  console.log("Chips después de limpiar: ", chips);
+});
+
+//* funcion to add chips 
+
+let counterEl = document.getElementById("counter-el");
+let counter = 10; // Tiempo en segundos
+ // Suponiendo que chips es 0 inicialmente
+
+// Incrementar chips cada minuto
+setInterval(function () {
+  chips += 10; // Incrementar chips en 10 cada minuto
+  chipsCount.textContent = chips;
+  console.log("Chips después de limpiar: ", chips);
+  localStorage.setItem("chips", chips); // Guardar las fichas en localStorage
+}, 10000); // 60000 milisegundos = 1 minuto
+
+// Actualizar el contador cada segundo
+setInterval(function () {
+  if (counter > 0) {
+    counter--; // Decrementar el contador
+    counterEl.textContent = "Next chips in: " + counter + "s";
+  }
+  if (counter === 0) {
+    counter = 10; // Reiniciar el contador a 60 segundos cuando llegue a cero
+  }
+}, 1000); // 1000 milisegundos = 1 segundo
+
+console.log("Total después de limpiar: ", total);
+console.log("Chips después de limpiar: ", chips);
+
+// Recuperar las fichas almacenadas en localStorage (si existen)
+if (localStorage.getItem("chips")) {
+  chips = parseInt(localStorage.getItem("chips"));
+}
+
+
+console.log("Total después de limpiar: ", total);
+console.log("Chips después de limpiar: ", chips);
