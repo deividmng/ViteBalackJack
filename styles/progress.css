@@ -1,0 +1,82 @@
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+   padding: 10px;
+    background-color: white;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  #chips {
+    margin: 0;
+    font-size: 33px;
+    font-weight: bold;
+    color: gold;
+  }
+
+  
+.progress-bar-container {
+    position: relative;
+    width: 200px; /* Ancho total de la barra de progreso */
+    height: 30px; /* Altura total de la barra de progreso, ajusta según necesites */
+    margin-left: 10px; /* Espacio a la izquierda */
+  }
+ 
+  
+  .progress-bar {
+    width: 100%; /* Llena el contenedor */
+    height: 10px; /* Altura de la barra de progreso */
+    overflow: hidden; /* Oculta el contenido que desborda */
+  }
+  
+  .progress {
+    width: 10%; /* Ancho inicial de la barra de progreso */
+    height: 100%; 
+    background-color: #4caf50; 
+    border-radius: 5px; 
+  }
+
+  .progress-bar-container {
+    display: flex;
+    align-items: center;
+    padding-right: 10px;
+    
+  }
+  
+  .bordered {
+    border: 1px solid gold; /* Borde de oro */
+    padding: 5px;
+    border-radius: 5px; /* Bordes redondeados */
+    color: rgb(207, 57, 57);
+  }
+  
+  .borderedBar {
+  border-top: 1px solid rgb(204, 174, 4);    /* Solo borde superior */
+  border-bottom: 1px solid rgb(204, 174, 4); /* Solo borde inferior */
+  padding: 5px;
+   
+}
+  .progress-bar {
+    position: relative;
+    width: 80%;
+    height: 5px;
+    margin: 0 ;
+    overflow: hidden;
+  }
+  
+  #fill-bar {
+    height: 100%;
+    width: 0;
+    background-color: gold;
+    transition: width 0.5s ease;
+  }
+  
+  #left-number,
+  #right-number {
+    font-size: 18px;
+  }
+  
