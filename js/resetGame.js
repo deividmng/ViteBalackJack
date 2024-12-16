@@ -30,15 +30,19 @@ export function resetGameAfterDelay() {
     const buttosBet = document.getElementById("bet-buttons")
     buttosBet.style.display = "flex"
 
-    const allArrows = document.getElementsByClassName('allArrows');
+    //! here is the arrows to show up again 
+    const arrows = document.getElementsByClassName('allArrows');
 
-    allArrows.style.display= "flex"
-
+    for (let arrow of arrows) {
+      arrow.style.display = "flex";
+    }
+    
 
     // const messageDisplay  = document.getElementById("message")
     // messageDisplay.style.display = "none"
- 
     // Aquí puedes añadir cualquier otra lógica necesaria para reiniciar el juego
     console.log("Juego reiniciado correctamente.");
   }, 3000); // El retraso es de 2000 milisegundos (2 segundos)
 }
+
+
