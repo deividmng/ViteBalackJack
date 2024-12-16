@@ -4,6 +4,9 @@ import { initializeBetButtons ,getTotal ,resetTotal,win} from "./betButtons.js";
 // import{  calculateValue} from "./calculateValue"
  import{increaseProgress} from "./progressBar.js";
  import {resetGameAfterDelay} from "./resetGame.js";
+
+
+ const messageDisplay = document.getElementById("message")
  
 
 //! I`m  making this funcion to don't show the main area until I dont prest the button starGame()
@@ -58,12 +61,14 @@ startGame.onclick = async function () {
   const response = await fetch(cardUrl);
   const cardData = await response.json();
 
-
   //! calling the after start annd more staff and move on the anothe file 
   afterTheGame()
 
+  //! quitando los buttons para apostar 
+   const buttosBet = document.getElementById("bet-buttons")
+   buttosBet.style.display = "none"
 
-   const buttosPlayGame = document.getElementById("buttos-play-game");
+  const buttosPlayGame = document.getElementById("buttos-play-game");
   buttosPlayGame.style.display = "flex"
   
     //* Aquí estás ocultando el main 
@@ -74,7 +79,6 @@ startGame.onclick = async function () {
     //* Here is to disable the main buttos
     const mainButtos = document.getElementById("buttons-start")
     mainButtos.style.display = "none"
-
 
   // Asegúrate de que se obtuvieron las cartas correctamente
   if (!cardData.cards || cardData.cards.length < 2) {
@@ -107,7 +111,7 @@ startGame.onclick = async function () {
   // Verificar si el total excede 21
   if (total > 21) {
 
-     message.style.display = "block";
+    //  message.style.display = "block";
     // resetTotal(); // Reinicia el total (asegúrate de que esta función esté definida)
   }
 
@@ -229,63 +233,63 @@ newCard.addEventListener("click", async function() {
   // calculateValue()
 });
 
+
+//! here is the stand button
 const stand = document.getElementById("stand");
 
-stand.addEventListener("click", async function() {
-  console.log('stand function started');
-  
-  // sumDealer.style.display = "block";  // o "inline-block" si es más adecuado
-  // sumPlayer.style.display = "block";  // o "inline-block" si es más adecuado
-  // El dealer sigue sacando cartas hasta que su puntuación sea mayor a la del jugador o se pase de 21
+
+stand.addEventListener("click", async function () {
+  console.log("stand function started");
+
   while (totalDealer <= total && totalDealer <= 21) {
-    await dealerCards(); // Llamar a dealerCards para que el dealer saque una carta
+    await dealerCards();
   }
 
-  let message = "";  // Definir la variable message
-
-  // Evaluar el resultado del juego
+  // Evaluar el resultado del juego para el stand
   if (total > 21) {
-    // El jugador se pasa (pierde)
-    message = "You Busted! Dealer Wins!";
-    // Aquí podrías incluir lógica para perder la apuesta si lo deseas
-    console.log('perdieste');
-    increaseProgress();
+    messageDisplay.textContent = "You Busted! Dealer Wins!";
+    messageDisplay.className = "busted-message"; // Clase para jugador que pierde por pasarse
+    showMessageTemporary();
+    console.log("perdiste === coming from the STAND BTN");
   } else if (totalDealer > 21) {
-    // El dealer se pasa (gana el jugador)
-    message = "Dealer Busted! You Win!";
-    console.log('perdieste')
-    resetTotal(); // Reinicia el total (asegúrate de que esta función esté definida)
+    messageDisplay.textContent = "Dealer Busted! You Win!";
+    messageDisplay.className = "win-message"; // Clase para victoria del jugador
+    showMessageTemporary();
     increaseProgress();
-    // calculateValue()
-    // Aquí podrías incluir lógica para ganar la apuesta si lo deseas
+    console.log("ganaste porque el dealer se pasó");
+    resetTotal();
   } else if (total > totalDealer) {
-    // El jugador gana
-    message = "You Win!";
-    console.log('you win calling from stan')
-    win()
-    increaseProgress()
+    messageDisplay.textContent = "You Win! Better Luck Next Time Dealer!";
+    messageDisplay.className = "win-message"; // Clase para victoria del jugador
+    showMessageTemporary();
+    console.log('you win calling from stand "You Win!"');
+    win();
     increaseProgress();
-    // Aquí podrías incluir lógica para ganar la apuesta si lo deseas
   } else if (total < totalDealer) {
-    // El dealer gana
-    message = "Dealer Wins!";
-    console.log('dealer win')
-    // Aquí podrías incluir lógica para perder la apuesta si lo deseas
-    resetTotal(); // Reinicia el total (asegúrate de que esta función esté definida)
-    // calculateValue()
+    messageDisplay.textContent = "Dealer Wins! Better Luck Next Time!";
+    messageDisplay.className = "lose-message"; // Clase para victoria del dealer
+    showMessageTemporary();
+    console.log('dealer win "Dealer Wins!"');
+    resetTotal();
   } else {
-    // Empate
-    message = "It's a tie!";
-    // Aquí podrías incluir lógica para devolver la apuesta al jugador si es necesario
+    messageDisplay.textContent = "It's a Tie!";
+    messageDisplay.className = "tie-message"; // Clase para empate
+    showMessageTemporary();
   }
 
-  // Mostrar el mensaje en la interfaz
-  // message.style.display = "block";  // Mostrar el mensaje
-  // message.textContent = message;    // Asignar el mensaje al elemento
-
-  console.log(`Resultado final: ${message}`);
-  resetGameAfterDelay()
+  console.log(`Resultado final: ${messageDisplay.textContent}`);
+  resetGameAfterDelay();
+  total = 0;
+  totalDealer = 0;
 });
 
+// Función para mostrar el mensaje temporalmente
+function showMessageTemporary() {
+  messageDisplay.style.display = "block"; // Mostrar el mensaje
+  setTimeout(() => {
+    messageDisplay.style.display = "none"; // Ocultar el mensaje después de 4 segundos
+    messageDisplay.className = ""; // Eliminar clases para que no se acumulen
+  }, 4000); // Tiempo en milisegundos
+}
 
 
