@@ -1,58 +1,55 @@
-// Elemento donde se muestra el total
-const totalCount = document.getElementById("total");
+// Elemento donde se muestra el totalbet
+const totalCount = document.getElementById("total-bet");
 const chipsCount = document.getElementById("chips");
 
 let chips = 200; // Fichas iniciales
-let total = 0;   // Total inicial
+let totalbet = 0;   // Total inicial
 
 // Inicializa el valor de las fichas en el DOM
 chipsCount.textContent = chips;
 
-// Función para obtener el valor actual de total
+// Función para obtener el valor actual de totalbet
 export function getTotal() {
-    return total;
+    return totalbet;
 }
 
-// Función para reiniciar el total
+// Función para reiniciar el totalbet
 //! use to as well for the lose function  
 
 export function resetTotal() {
-    total = 0;
-    totalCount.textContent = total; // Reinicia el total mostrado en el DOM
+    totalbet = 0;
+    totalCount.textContent = totalbet; // Reinicia el totalbet mostrado en el DOM
 }
 
 // Función para manejar la apuesta
 export function bet(amount) {
     if (chips >= amount) { // Verifica que tengas suficientes fichas
-        total += amount;
+        totalbet += amount;
         chips -= amount; // Reduce las fichas
-        totalCount.textContent = total; // Actualiza el total en el DOM
+        totalCount.textContent = totalbet; // Actualiza el totalbet en el DOM
         chipsCount.textContent = `chips ${chips} `; // Actualiza las fichas en el DOM
     } else {
         alert("No tienes suficientes fichas para realizar esta apuesta."); // Muestra un mensaje de error
     }
 }
 export function win() {
-    // Multiplicar el total por 2 y guardarlo en la variable 'winnings'
-    let winnings = total * 2;
+    // Multiplicar el totalbet por 2 y guardarlo en la variable 'winnings'
+    let winnings = totalbet * 2;
 
-    // Actualizar el total de las fichas y el total de la apuesta
+    // Actualizar el totalbet de las fichas y el totalbet de la apuesta
     chips += winnings; // Agregar las ganancias a las fichas del jugador
-    total = 0; // Reiniciar el total de la apuesta (si deseas hacerlo)
+    totalbet = 0; // Reiniciar el totalbet de la apuesta (si deseas hacerlo)
 
     // Actualizar el DOM con los nuevos valores
     chipsCount.textContent = `chips ${chips} `;  // Actualiza el valor de las fichas en el DOM
-    totalCount.textContent = total;  // Reinicia el valor de total en el DOM (si lo deseas reiniciar)
+    totalCount.textContent = totalbet;  // Reinicia el valor de totalbet en el DOM (si lo deseas reiniciar)
   
     // Imprimir el resultado para verificar en la consola
     console.log('Resultado después de ganar:');
     console.log('Winnings: ', winnings);
-    console.log('Total (debe ser 0 ahora): ', total);
+    console.log('Total (debe ser 0 ahora): ', totalbet);
     console.log('Chips después de ganar: ', chips);
 }
-
-
-
 
 
 // Función para asignar eventos a los botones
@@ -69,16 +66,16 @@ const clearBet = document.getElementById("clear-bet");
 
 // Listener para limpiar la apuesta
 clearBet.addEventListener("click", function() {
-  // Sumar la apuesta total de nuevo a las fichas
-  chips += total; 
-  // Reiniciar el total de la apuesta
-  total = 0;
+  // Sumar la apuesta totalbet de nuevo a las fichas
+  chips += totalbet; 
+  // Reiniciar el totalbet de la apuesta
+  totalbet = 0;
   // Actualizar el DOM con los nuevos valores
   chipsCount.textContent = `chips ${chips} `;
-  totalCount.textContent = total;
+  totalCount.textContent = totalbet;
 
   // Logs para depuración
-  console.log("Total después de limpiar: ", total);
+  console.log("Total después de limpiar: ", totalbet);
   console.log("Chips después de limpiar: ", chips);
 });
 
@@ -107,7 +104,7 @@ setInterval(function () {
   }
 }, 1000); // 1000 milisegundos = 1 segundo
 
-console.log("Total después de limpiar: ", total);
+console.log("Total después de limpiar: ", totalbet);
 console.log("Chips después de limpiar: ", chips);
 
 // Recuperar las fichas almacenadas en localStorage (si existen)
@@ -116,5 +113,34 @@ if (localStorage.getItem("chips")) {
 }
 
 
-console.log("Total después de limpiar: ", total);
+console.log("Total después de limpiar: ", totalbet);
 console.log("Chips después de limpiar: ", chips);
+
+
+
+
+//! here it goes the doble bet 
+const dobleBet = document.getElementById("doble-bet");
+
+dobleBet.addEventListener('click', () => {
+  // Verificar si el jugador tiene suficientes fichas para duplicar
+  if (chips >= totalbet) {
+    console.log("Botón dobleBet fue clickeado");
+
+    // Reducir las fichas disponibles en función del duplicado
+    chips -= totalbet;
+
+    // Duplicar el total de la apuesta
+    totalbet *= 2;
+
+    // Actualizar el DOM con los nuevos valores
+    chipsCount.textContent = `chips ${chips}`;
+    totalCount.textContent = totalbet;
+
+    console.log(`El valor actual de totalbet después de duplicar: ${totalbet}`);
+    console.log(`Fichas restantes: ${chips}`);
+  } else {
+    // Mensaje de error si no hay suficientes fichas
+    alert("No tienes suficientes fichas para duplicar la apuesta.");
+  }
+});
