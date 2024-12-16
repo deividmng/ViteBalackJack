@@ -1,117 +1,133 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <script type="module"  src="./js/main.js"></script>
-    <link rel="stylesheet" href="./styles/main.css">
-    <title>Vite App</title>
-  </head>
-  
-  <header>
-    <p id="chips">
-       chips:200
-    </p>
 
-    <div class="progress-bar-container">
-      <span id="left-number" class="bordered">0</span>
-      <div class="progress-bar borderedBar">
-          <div id="fill-bar">
-              <div id="fill-bar" class="progress"></div>
-          </div>
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <script type="module" src="./js/main.js"></script>
+  <link rel="stylesheet" href="./styles/main.css">
+  <title>Vite App</title>
+</head>
+
+<header>
+  <p id="chips">
+    chips:200
+  </p>
+
+  <div class="progress-bar-container">
+    <span id="left-number" class="bordered">0</span>
+    <div class="progress-bar borderedBar">
+      <div id="fill-bar">
+        <div id="fill-bar" class="progress"></div>
       </div>
-      <span id="right-number" class="bordered">100</span>
-  </div>
-  </header>
-  
- 
-    
-
-  <div >
-    <h2 id="message">h</h2>
-  </div>
-
-  <div id="betContainer">
-    <img id="betImage" src="./src/assets/imgs/chip.png" alt="Bet Image">
-    <p class="total" id="total-bet">0</p>
-  </div>
-   
-    
-
-
-      
-    <main id="main-area">
-
-      <section class="dealer-section">
-        <div id="dealer-container">
-          <!-- Las cartas del dealer se mostrarán aquí -->
-        </div>
-        <p id="sum-dealer">0</p> <!-- Total del dealer -->
-      </section>
-      
-      <!-- Player Section -->
-      <section class="player-section">
-        <div id="cards-player" class="card-container">
-          <!-- Player's cards will be displayed here -->
-        </div>
-        <p id="sum-player">0</p> <!-- Player's total -->
-      </section>
-    </main>
-      
- 
-
-  <div id="buttons-start">
-    <button id="start-Game"><img src="/src/assets/imgs/buttons/play_arrow_24dp_F3F3F3_FILL0_wght400_GRAD0_opsz24.svg" alt="Icon">Deal</button>
-  <button id="clear-bet">
-  <img src="/src/assets/imgs/buttons/close_24dp_F3F3F3_FILL0_wght400_GRAD0_opsz24.svg" alt="">Clear</button>  
-  </div>
-
-
-   <section id="bet-buttons">
-     <div class="bet-button" id="bet-five-btn">
-       <img src="/src/assets/imgs/chip.png" alt="Bet 5">
-       <span>5</span>
-      </div>
-      <div class="bet-button" id="bet-ten-btn">
-        <img src="/src/assets/imgs/chip.png" alt="Bet 10">
-        <span>10</span>
-      </div>
-      <div class="bet-button" id="bet-twentyfive-btn" >
-        <img src="/src/assets/imgs/chip.png" alt="Bet 25">
-        <span>25</span>
-      </div>
-      <div class="bet-button" id="bet-fifty-btn">
-        <img src="/src/assets/imgs/chip.png" alt="Bet 50">
-        <span>50</span>
-      </div>
-      <div class="bet-button" id="bet-hundred-btn">
-        <img src="/src/assets/imgs/chip.png" alt="Bet 100">
-        <span>100</span>
-      </div>
-      <div class="bet-button" id="bet-twofifty-btn">
-        <img src="/src/assets/imgs/chip.png" alt="Bet 250">
-        <span>250</span>
-      </div>
-    </section>
-  
-
-    <div id="buttos-play-game">
-      <button id="new-card"><img src="./src/assets/imgs/buttons/arrow_downward_24dp_F3F3F3_FILL0_wght400_GRAD0_opsz24.svg" alt="new-card"> NEW CARD</button>
-      <button id="stand"><img src="./src/assets/imgs/buttons/front_hand_24dp_F3F3F3_FILL0_wght400_GRAD0_opsz24.svg" alt="stand-img">Stand</button>
-      <button id="doble-bet"><img src="./src/assets/imgs/buttons/roulette-svgrepo-com.svg" alt="img-roulete">Doble</button>
     </div>
-    
+    <span id="right-number" class="bordered">100</span>
+  </div>
+</header>
+
+
+
+
+<div>
+  <h2 id="message">h</h2>
+</div>
+
+<div id="betContainer">
+  <img id="betImage" src="./src/assets/imgs/chip.png" alt="Bet Image">
+  <p class="total" id="total-bet">0</p>
+</div>
+
+
+
+
+
+<main id="main-area">
+
+  <section class="dealer-section">
+    <div id="dealer-container">
+      <!-- Las cartas del dealer se mostrarán aquí -->
+    </div>
+    <p id="sum-dealer">0</p> <!-- Total del dealer -->
+  </section>
+
+  <!-- Player Section -->
+  <section class="player-section">
+    <div id="cards-player" class="card-container">
+      <!-- Player's cards will be displayed here -->
+    </div>
+    <p id="sum-player">0</p> <!-- Player's total -->
+  </section>
+</main>
+
+
+
+<div id="buttons-start">
+  <button id="start-Game"><img src="/src/assets/imgs/buttons/play_arrow_24dp_F3F3F3_FILL0_wght400_GRAD0_opsz24.svg"
+      alt="Icon">Deal</button>
+  <button id="clear-bet">
+    <img src="/src/assets/imgs/buttons/close_24dp_F3F3F3_FILL0_wght400_GRAD0_opsz24.svg" alt="">Clear</button>
+</div>
+
+
+<section id="bet-buttons-all">
+  <div class="allArrows">
+    <img src="./src/assets/imgs/arrow_downward_24dp_FILL0_wght400_GRAD0_opsz24 (1).svg" class="add5px"
+      alt="Additional Image">
+    <img src="./src/assets/imgs/arrow_downward_24dp_FILL0_wght400_GRAD0_opsz24 (1).svg" class="add5px"
+      alt="Additional Image">
+    <img src="./src/assets/imgs/arrow_downward_24dp_FILL0_wght400_GRAD0_opsz24 (1).svg" class="add5px"
+      alt="Additional Image">
+    <img src="./src/assets/imgs/arrow_downward_24dp_FILL0_wght400_GRAD0_opsz24 (1).svg" class="add5px"
+      alt="Additional Image">
+    <img src="./src/assets/imgs/arrow_downward_24dp_FILL0_wght400_GRAD0_opsz24 (1).svg" class="add5px"
+      alt="Additional Image">
+    <img src="./src/assets/imgs/arrow_downward_24dp_FILL0_wght400_GRAD0_opsz24 (1).svg" class="add5px"
+      alt="Additional Image">
+  </div>
+
+  <div id="bet-buttons">
+
   
+  <div class="bet-button" id="bet-five-btn">
+    <img src="/src/assets/imgs/chip.png" alt="Bet 5">
+    <span>5</span>
+  </div>
+  <div class="bet-button" id="bet-ten-btn">
+    <img src="/src/assets/imgs/chip.png" alt="Bet 10">
+    <span>10</span>
+  </div>
+  <div class="bet-button" id="bet-twentyfive-btn">
+    <img src="/src/assets/imgs/chip.png" alt="Bet 25">
+    <span>25</span>
+  </div>
+  <div class="bet-button" id="bet-fifty-btn">
+    <img src="/src/assets/imgs/chip.png" alt="Bet 50">
+    <span>50</span>
+  </div>
+  <div class="bet-button" id="bet-hundred-btn">
+    <img src="/src/assets/imgs/chip.png" alt="Bet 100">
+    <span>100</span>
+  </div>
+  <div class="bet-button" id="bet-twofifty-btn">
+    <img src="/src/assets/imgs/chip.png" alt="Bet 250">
+    <span>250</span>
+  </div>
+</div><!-- end of the div from bet buton  -->
 
-    
-   
- 
-   
+</section>
 
 
-    <!-- <button id="getRandonCard" >getRandonCard</button> -->
-    <span id="counter-el"></span>
+<div id="buttos-play-game">
+  <button id="new-card"><img src="./src/assets/imgs/buttons/arrow_downward_24dp_F3F3F3_FILL0_wght400_GRAD0_opsz24.svg"
+      alt="new-card"> NEW CARD</button>
+  <button id="stand"><img src="./src/assets/imgs/buttons/front_hand_24dp_F3F3F3_FILL0_wght400_GRAD0_opsz24.svg"
+      alt="stand-img">Stand</button>
+  <button id="doble-bet"><img src="./src/assets/imgs/buttons/roulette-svgrepo-com.svg" alt="img-roulete">Doble</button>
+</div>
 
-  </body>
+<span id="counter-el"></span>
+
+</body>
+
 </html>
