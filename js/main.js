@@ -185,77 +185,90 @@ async function dealerCards() {
 // Asegúrate de llamar a la función dealerCards cuando sea necesario
 
 
-//! this is the new card 
 const newCard = document.getElementById("new-card");
-// Añadir un event listener al elemento new-card we are using async 
+
 newCard.addEventListener("click", async function() {
-  // Código que quieres ejecutar cuando se haga clic en el botón
+
+  
   console.log("Se ha hecho clic en 'new-card'");
 
-
-
   // Solicitar una nueva carta para el jugador
-  const cardUrl = `https://deckofcardsapi.com/api/deck/${deckId}/draw/?count=1`; // Cambiar para obtener solo 1 carta
-  const responseNew = await fetch(cardUrl);  // Espera la respuesta
-  const cardDataNew = await responseNew.json();  // Convierte la respuesta a JSON
-  
-  sumDealer.style.display="flex";
-  sumPlayer.style.display="flex";
+  const cardUrl = `https://deckofcardsapi.com/api/deck/${deckId}/draw/?count=1`;
+  const responseNew = await fetch(cardUrl);
+  const cardDataNew = await responseNew.json();
 
-  // Verifica que las cartas se obtuvieron correctamente
   if (!cardDataNew.cards || cardDataNew.cards.length === 0) {
     console.error("No se pudo obtener una carta para el jugador.");
     return;
   }
+
   const playerCard = cardDataNew.cards[0]; // Obtener la carta para el jugador
-  // Mostrar la imagen de la carta en el contenedor de las cartas del jugador
-  const cardsContiner = document.getElementById("cards-player"); // Asegúrate de que el contenedor existe
   cardsContiner.innerHTML += `<img src="${playerCard.image}" alt="${playerCard.value} of ${playerCard.suit}">`;
 
   // Calcular el valor de la carta
   let cardValue = 0;
-  if (
-    playerCard.value === "QUEEN" ||
-    playerCard.value === "KING" ||
-    playerCard.value === "JACK"
-  ) {
+  if (["QUEEN", "KING", "JACK"].includes(playerCard.value)) {
     cardValue = 10;
   } else if (playerCard.value === "ACE") {
-    // Puedes añadir lógica para elegir entre 1 o 11 para el As
     cardValue = (total + 11 <= 21) ? 11 : 1;
   } else {
     cardValue = parseInt(playerCard.value);
-    
   }
+
   // Actualizar el total del jugador
   total += cardValue;
-
-  // Mostrar el nuevo total
   sumPlayer.textContent = total;
 
-   // Verificar si el total excede 21
-   if (total > 21) {
-    // message.style.filter = "blue(4px)";
-    // message.style.display = "block";
-    resetTotal(); // Reinicia el total (asegúrate de que esta función esté definida)
-    // calculateValue()
-    
+  while (totalDealer <= 17  && totalDealer <= total) {
+    await dealerCards();
   }
+  // Verificar si el total excede 21 o es 21
+  if (total > 21) {
+    messageDisplay.textContent = "You Busted!";
+    messageDisplay.className = "busted-message";
+    showMessageTemporary();
+    resetGameAfterDelay();
 
-  console.log(`Carta del jugador: ${playerCard.value} of ${playerCard.suit}`);
-  console.log(`Total actual del jugador: ${total}`);
-  // calculateValue()
+  } else if (total === 21) {
+    messageDisplay.textContent = "You Got a Black Jack!";
+    messageDisplay.className = "busted-message";
+    showMessageTemporary();
+    resetGameAfterDelay();
+  
+   
+  } 
+
+  resetGameAfterDelay();
+  total = 0;
+  totalDealer = 0;
 });
 
+// function getCardValue(card) {
+//   if (["QUEEN", "KING", "JACK"].includes(card.value)) {
+//     return 10;
+//   } else if (card.value === "ACE") {
+//     return (totalDealer + 11 <= 21) ? 11 : 1;
+//   } else {
+//     return parseInt(card.value);
+//   }
+// }
 
-//! here is the stand button
+
+
+
+
+
+
+
+
+                                  //! here is the stand button
 const stand = document.getElementById("stand");
 
 
 stand.addEventListener("click", async function () {
   console.log("stand function started");
 
-  while (totalDealer <= total && totalDealer <= 21) {
+  while (totalDealer <= 17  && totalDealer <= total) {
     await dealerCards();
   }
 
@@ -309,5 +322,3 @@ function showMessageTemporary() {
     messageDisplay.className = ""; // Eliminar clases para que no se acumulen
   }, 4000); // Tiempo en milisegundos
 }
-
-

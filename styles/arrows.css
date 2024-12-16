@@ -12,7 +12,6 @@
 
 .allArrows img {
   margin-right: 10px;
-  
   width: 50px;
   height: 30px;
   animation: moveUP 2s infinite alternate; /* Adjust duration as needed */
