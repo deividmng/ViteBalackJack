@@ -100,6 +100,7 @@ button:focus-visible {
 @import url("player.css");
 @import url("dealer.css");
 @import url("progress.css");
+@import url("btnsPlay.css");
 
 
 
@@ -143,7 +144,7 @@ button:focus-visible {
   height: 60px; /* Ajusta el tamaño de la imagen */
 }
 
-#total {
+#total-bet {
   position: absolute; /* Posiciona el texto de forma absoluta dentro del contenedor */
   top: 50%; /* Coloca el texto a la mitad del contenedor verticalmente */
   left: 50%; /* Coloca el texto a la mitad del contenedor horizontalmente */
