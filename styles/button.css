@@ -112,6 +112,12 @@
 
 
 
+#bet-buttons-all {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Center the buttons vertically */
+  margin-top: 50px;
+}
 #bet-buttons {
   display: flex;
   justify-content: center; /* Center the buttons horizontally */

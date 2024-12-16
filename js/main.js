@@ -80,6 +80,20 @@ startGame.onclick = async function () {
     const mainButtos = document.getElementById("buttons-start")
     mainButtos.style.display = "none"
 
+
+    //* the arrows 
+    // const allArrows = document.getElementsById("bet-buttons-all");
+    // allArrows.style.display= "none"
+
+
+   // Selecciona todos los elementos con la clase 'allArrows'
+const arrows = document.getElementsByClassName('allArrows');
+
+// Recorre todos los elementos y aplica el estilo 'display: none'
+for (let arrow of arrows) {
+  arrow.style.display = "none";
+}
+
   // Asegúrate de que se obtuvieron las cartas correctamente
   if (!cardData.cards || cardData.cards.length < 2) {
     console.error("No se pudieron obtener las cartas");
@@ -282,6 +296,10 @@ stand.addEventListener("click", async function () {
   total = 0;
   totalDealer = 0;
 });
+
+
+
+
 
 // Función para mostrar el mensaje temporalmente
 function showMessageTemporary() {

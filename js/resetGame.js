@@ -30,6 +30,10 @@ export function resetGameAfterDelay() {
     const buttosBet = document.getElementById("bet-buttons")
     buttosBet.style.display = "flex"
 
+    const allArrows = document.getElementsByClassName('allArrows');
+
+    allArrows.style.display= "flex"
+
 
     // const messageDisplay  = document.getElementById("message")
     // messageDisplay.style.display = "none"
