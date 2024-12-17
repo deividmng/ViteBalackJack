@@ -123,21 +123,18 @@ for (let arrow of arrows) {
   });
 
   // Verificar si el total excede 21
-  if (total > 21) {
-
-    //  message.style.display = "block";
-    // resetTotal(); // Reinicia el total (asegúrate de que esta función esté definida)
+  if (total === 21) { 
+     messageDisplay.textContent = "You Got a Black Jack!";
+      messageDisplay.className = "busted-message";
+      showMessageTemporary();
+      resetGameAfterDelay();
   }
 
   // cambiando el sumPlayer for the total 
   sumPlayer.textContent = total
   console.log(`Total después de las dos cartas: ${total}`);
- 
-    dealerCards(); // Llamada a dealerCards una vez que el DOM esté listo
-  
-  
+  dealerCards(); // Llamada a dealerCards una vez que el DOM esté listo  
 };
-
 
 // ! here it gonna go the deales 
 const dealerContainer = document.getElementById("dealer-container");
@@ -184,14 +181,12 @@ async function dealerCards() {
 
 // Asegúrate de llamar a la función dealerCards cuando sea necesario
 
-
+//!              here is where it goes the new card 
 const newCard = document.getElementById("new-card");
 
 newCard.addEventListener("click", async function() {
-
-  
   console.log("Se ha hecho clic en 'new-card'");
-
+  
   // Solicitar una nueva carta para el jugador
   const cardUrl = `https://deckofcardsapi.com/api/deck/${deckId}/draw/?count=1`;
   const responseNew = await fetch(cardUrl);
@@ -202,10 +197,9 @@ newCard.addEventListener("click", async function() {
     return;
   }
 
-  const playerCard = cardDataNew.cards[0]; // Obtener la carta para el jugador
+  const playerCard = cardDataNew.cards[0];
   cardsContiner.innerHTML += `<img src="${playerCard.image}" alt="${playerCard.value} of ${playerCard.suit}">`;
 
-  // Calcular el valor de la carta
   let cardValue = 0;
   if (["QUEEN", "KING", "JACK"].includes(playerCard.value)) {
     cardValue = 10;
@@ -215,33 +209,37 @@ newCard.addEventListener("click", async function() {
     cardValue = parseInt(playerCard.value);
   }
 
-  // Actualizar el total del jugador
   total += cardValue;
   sumPlayer.textContent = total;
-
-  while (totalDealer <= 17  && totalDealer <= total) {
-    await dealerCards();
-  }
-  // Verificar si el total excede 21 o es 21
+  let isAlive = true; // Determina si el jugador sigue en el juego
   if (total > 21) {
-    messageDisplay.textContent = "You Busted!";
+    isAlive = false;
+    messageDisplay.textContent = "You Busted! Dealer Wins coomig for the new card !";
     messageDisplay.className = "busted-message";
-    showMessageTemporary();
-    resetGameAfterDelay();
-
   } else if (total === 21) {
-    messageDisplay.textContent = "You Got a Black Jack!";
-    messageDisplay.className = "busted-message";
-    showMessageTemporary();
-    resetGameAfterDelay();
-  
-   
-  } 
+    isAlive = false;
+    win();
+    messageDisplay.textContent = "Blackjack!";
+    messageDisplay.className = "message-blackjack";
+  } else {
+    isAlive = true;
+  //   messageDisplay.textContent = "You're still in the game!";
+  //   messageDisplay.className = "playing-message";
+  }
 
-  resetGameAfterDelay();
-  total = 0;
-  totalDealer = 0;
+  if (!isAlive) {
+    while (totalDealer <= 21 && totalDealer <= total) {
+      await dealerCards();
+    }
+    winLoseTie();
+  }
+ 
 });
+
+
+ 
+  
+
 
 // function getCardValue(card) {
 //   if (["QUEEN", "KING", "JACK"].includes(card.value)) {
@@ -251,67 +249,19 @@ newCard.addEventListener("click", async function() {
 //   } else {
 //     return parseInt(card.value);
 //   }
-// }
 
-
-
-
-
-
-
-
-
-                                  //! here is the stand button
+  //!                          here is the stand button
 const stand = document.getElementById("stand");
-
 
 stand.addEventListener("click", async function () {
   console.log("stand function started");
-
   while (totalDealer <= 17  && totalDealer <= total) {
     await dealerCards();
   }
-
   // Evaluar el resultado del juego para el stand
-  if (total > 21) {
-    messageDisplay.textContent = "You Busted! Dealer Wins!";
-    messageDisplay.className = "busted-message"; // Clase para jugador que pierde por pasarse
-    showMessageTemporary();
-    console.log("perdiste === coming from the STAND BTN");
-  } else if (totalDealer > 21) {
-    messageDisplay.textContent = "Dealer Busted! You Win!";
-    messageDisplay.className = "win-message"; // Clase para victoria del jugador
-    showMessageTemporary();
-    increaseProgress();
-    console.log("ganaste porque el dealer se pasó");
-    resetTotal();
-  } else if (total > totalDealer) {
-    messageDisplay.textContent = "You Win! Better Luck Next Time Dealer!";
-    messageDisplay.className = "win-message"; // Clase para victoria del jugador
-    showMessageTemporary();
-    console.log('you win calling from stand "You Win!"');
-    win();
-    increaseProgress();
-  } else if (total < totalDealer) {
-    messageDisplay.textContent = "Dealer Wins! Better Luck Next Time!";
-    messageDisplay.className = "lose-message"; // Clase para victoria del dealer
-    showMessageTemporary();
-    console.log('dealer win "Dealer Wins!"');
-    resetTotal();
-  } else {
-    messageDisplay.textContent = "It's a Tie!";
-    messageDisplay.className = "tie-message"; // Clase para empate
-    showMessageTemporary();
-  }
+  winLoseTie()
 
-  console.log(`Resultado final: ${messageDisplay.textContent}`);
-  resetGameAfterDelay();
-  total = 0;
-  totalDealer = 0;
 });
-
-
-
 
 
 // Función para mostrar el mensaje temporalmente
@@ -322,3 +272,46 @@ function showMessageTemporary() {
     messageDisplay.className = ""; // Eliminar clases para que no se acumulen
   }, 4000); // Tiempo en milisegundos
 }
+
+
+
+function winLoseTie() {
+  if (total > 21) {
+    messageDisplay.textContent = "You Busted! Dealer Wins!";
+    messageDisplay.className = "busted-message"; // Clase para jugador que pierde por pasarse
+    
+    showMessageTemporary();
+    console.log("perdiste === coming from the STAND BTN");
+  } else if (totalDealer > 21) {
+    messageDisplay.textContent = "Dealer Busted! You Win!";
+    messageDisplay.className = "win-message"; // Clase para victoria del jugador
+    showMessageTemporary();
+    increaseProgress();
+    console.log("ganaste porque el dealer se pasó");
+  
+  } else if (total > totalDealer) {
+    messageDisplay.textContent = "You Win!";
+    messageDisplay.className = "win-message"; // Clase para victoria del jugador
+    showMessageTemporary();
+    console.log('you win calling from stand "You Win!"');
+    win();
+    increaseProgress();
+  } else if (total < totalDealer) {
+    messageDisplay.textContent = "Dealer Wins! Better Luck Next Time!";
+    messageDisplay.className = "lose-message"; // Clase para victoria del dealer
+    showMessageTemporary();
+    console.log('dealer win "Dealer Wins!"');
+    
+  } else {
+    messageDisplay.textContent = "It's a Tie!";
+    messageDisplay.className = "tie-message"; // Clase para empate
+    showMessageTemporary();
+    console.log(`Resultado final: ${messageDisplay.textContent}`);
+    
+    
+    }
+    resetGameAfterDelay();
+    resetTotal();
+    total = 0;
+    totalDealer = 0
+  }
