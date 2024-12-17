@@ -251,18 +251,17 @@ newCard.addEventListener("click", async function() {
 //   }
 
   //!                          here is the stand button
-const stand = document.getElementById("stand");
-
-stand.addEventListener("click", async function () {
-  console.log("stand function started");
-  while (totalDealer <= 17  && totalDealer <= total) {
-    await dealerCards();
-  }
-  // Evaluar el resultado del juego para el stand
-  winLoseTie()
-
-});
-
+  async function handleStand() {
+    console.log("stand function started");
+    
+    // Lógica del dealer mientras tiene menos de 17 o menos que el jugador
+    while (totalDealer <= 17 && totalDealer <= total) {
+      await dealerCards(); // Asumiendo que esta función está definida en tu código
+    }
+    
+    // Evaluar el resultado del juego para el stand
+    winLoseTie(); // Asumiendo que esta función también está definida
+  } stand.addEventListener("click", handleStand);
 
 // Función para mostrar el mensaje temporalmente
 function showMessageTemporary() {
@@ -314,4 +313,69 @@ function winLoseTie() {
     resetTotal();
     total = 0;
     totalDealer = 0
-  }
+  }  
+
+
+  let chips = localStorage.getItem("chips") ? parseInt(localStorage.getItem("chips")) : 200; 
+
+  // Aquí va la lógica para la doble apuesta
+  const totalCount = document.getElementById("total-bet");
+  const chipsCount = document.getElementById("chips");
+  const dobleBet = document.getElementById("doble-bet");
+  
+  dobleBet.addEventListener('click', async () => {
+    console.log("Botón dobleBet fue clickeado");
+  
+    // Solicitar una nueva carta para el jugador
+    const cardUrl = `https://deckofcardsapi.com/api/deck/${deckId}/draw/?count=1`;
+    const responseNew = await fetch(cardUrl);
+    const cardDataNew = await responseNew.json();
+  
+    if (!cardDataNew.cards || cardDataNew.cards.length === 0) {
+      console.error("No se pudo obtener una carta para el jugador.");
+      return;
+    }
+    sumPlayer 
+    const playerCard = cardDataNew.cards[0];
+    // Mostrar la carta en el DOM
+    cardsContiner.innerHTML += `<img src="${playerCard.image}" alt="${playerCard.value} of ${playerCard.suit}">`;
+  
+  //* addind the value
+    let cardValue = 0;
+    if (["QUEEN", "KING", "JACK"].includes(playerCard.value)) {
+      cardValue = 10;
+    } else if (playerCard.value === "ACE") {
+      cardValue = (total + 11 <= 21) ? 11 : 1;
+    } else {
+      cardValue = parseInt(playerCard.value);
+    }
+  
+    total += cardValue;
+    sumPlayer.textContent = total;
+    // Obtener el valor actual de totalCount y convertirlo a número
+    let currentTotal = parseInt(totalCount.textContent);
+  
+    // Verificar si el jugador tiene suficientes fichas
+    if (chips >= currentTotal) {
+      // Multiplicar el total de la apuesta por 2
+      let dobleTotal = currentTotal * 2;
+  
+      // Restar el valor actual de total de las fichas
+      chips -= currentTotal;
+  
+      // Actualizar el contenido de totalCount y chipsCount con los nuevos valores
+      totalCount.textContent = dobleTotal;
+      chipsCount.textContent = `chips ${chips}`;
+  
+      // Guardar el nuevo valor de chips en localStorage
+      localStorage.setItem("chips", chips);
+  
+      console.log(`Nuevo total de apuesta: ${dobleTotal}`);
+      console.log(`Fichas restantes: ${chips}`);
+      handleStand()
+    } else {
+      // Mensaje de error si no hay suficientes fichas
+      alert("No tienes suficientes fichas para duplicar la apuesta.");
+    }
+  });
+  
