@@ -263,7 +263,6 @@ function winLoseTie() {
   if (total > 21) {
     messageDisplay.textContent = "You Busted! Dealer Wins!";
     messageDisplay.className = "busted-message"; // Clase para jugador que pierde por pasarse
-    
     showMessageTemporary();
     console.log("perdiste === coming from the STAND BTN");
   } else if (totalDealer > 21) {
@@ -286,13 +285,11 @@ function winLoseTie() {
     messageDisplay.className = "lose-message"; // Clase para victoria del dealer
     showMessageTemporary();
     console.log('dealer win "Dealer Wins!"');
-    
   } else {
     messageDisplay.textContent = "It's a Tie!";
     messageDisplay.className = "tie-message"; // Clase para empate
     showMessageTemporary();
-    console.log(`Resultado final: ${messageDisplay.textContent}`);
-    
+    console.log(`Resultado final: ${messageDisplay.textContent}`); 
     }
     resetGameAfterDelay();
     resetTotal();
@@ -300,6 +297,7 @@ function winLoseTie() {
     totalDealer = 0
   
   }  
+  
   let chips = localStorage.getItem("chips") ? parseInt(localStorage.getItem("chips")) : 200; 
 
   // Aquí va la lógica para la doble apuesta
