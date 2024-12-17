@@ -91,37 +91,38 @@ clearBet.addEventListener("click", function() {
 });
 
 //* funcion to add chips 
-
 let counterEl = document.getElementById("counter-el");
-let counter = 10; // Tiempo en segundos
- // Suponiendo que chips es 0 inicialmente
+// Obtener las fichas desde localStorage, si no existe, inicializar en 0
 
-// Incrementar chips cada minuto
+// Mostrar las fichas iniciales al cargar
+
+chipsCount.textContent = `chips ${chips}`;
+
+let timeRemaining = 86400; // Tiempo restante en segundos para 24 horas (86400 segundos = 24 horas)
+
+// Incrementar chips cada 24 horas
 setInterval(function () {
-  chips += 10; // Incrementar chips en 10 cada minuto
+  chips += 2000; // Incrementar chips en 2000 cada 24 horas
   chipsCount.textContent = `chips ${chips} `;
-  console.log("Chips después de limpiar: ", chips);
+  console.log("Chips después de incremento: ", chips);
   localStorage.setItem("chips", chips); // Guardar las fichas en localStorage
-}, 10000); // 60000 milisegundos = 1 minuto
 
-// Actualizar el contador cada segundo
+  // Reiniciar el contador a 24 horas después de incrementar
+  timeRemaining = 86400; // 86400 segundos = 24 horas
+}, 86400000); // 86400000 milisegundos = 24 horas
+
+// Actualizar el contador de tiempo cada segundo
 setInterval(function () {
-  if (counter > 0) {
-    counter--; // Decrementar el contador
-    counterEl.textContent = "Next chips in: " + counter + "s";
-  }
-  if (counter === 0) {
-    counter = 10; // Reiniciar el contador a 60 segundos cuando llegue a cero
+  if (timeRemaining > 0) {
+    timeRemaining--; // Decrementar el tiempo restante
+    let hours = Math.floor(timeRemaining / 3600); // Calcular horas
+    let minutes = Math.floor((timeRemaining % 3600) / 60); // Calcular minutos
+    let seconds = timeRemaining % 60; // Calcular segundos
+
+    // Mostrar el tiempo restante en formato horas:minutos:segundos
+    counterEl.textContent = `Next chips in: ${hours}h ${minutes}m ${seconds}s`;
   }
 }, 1000); // 1000 milisegundos = 1 segundo
-
-console.log("Total después de limpiar: ", totalbet);
-console.log("Chips después de limpiar: ", chips);
-
-// Recuperar las fichas almacenadas en localStorage (si existen)
-if (localStorage.getItem("chips")) {
-  chips = parseInt(localStorage.getItem("chips"));
-}
 
 
 console.log("Total después de limpiar: ", totalbet);

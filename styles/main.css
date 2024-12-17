@@ -105,7 +105,9 @@ button:focus-visible {
 @import url("arrows.css");
 
 
-
+#counter-el {
+  color: rgb(114, 101, 27);
+}
 
 #cards-player {
   height: 150px;
