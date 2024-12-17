@@ -237,28 +237,13 @@ newCard.addEventListener("click", async function() {
 });
 
 
- 
-  
-
-
-// function getCardValue(card) {
-//   if (["QUEEN", "KING", "JACK"].includes(card.value)) {
-//     return 10;
-//   } else if (card.value === "ACE") {
-//     return (totalDealer + 11 <= 21) ? 11 : 1;
-//   } else {
-//     return parseInt(card.value);
-//   }
-
   //!                          here is the stand button
   async function handleStand() {
     console.log("stand function started");
-    
     // Lógica del dealer mientras tiene menos de 17 o menos que el jugador
     while (totalDealer <= 17 && totalDealer <= total) {
       await dealerCards(); // Asumiendo que esta función está definida en tu código
     }
-    
     // Evaluar el resultado del juego para el stand
     winLoseTie(); // Asumiendo que esta función también está definida
   } stand.addEventListener("click", handleStand);
@@ -287,6 +272,7 @@ function winLoseTie() {
     showMessageTemporary();
     increaseProgress();
     console.log("ganaste porque el dealer se pasó");
+    win()
   
   } else if (total > totalDealer) {
     messageDisplay.textContent = "You Win!";
@@ -307,15 +293,13 @@ function winLoseTie() {
     showMessageTemporary();
     console.log(`Resultado final: ${messageDisplay.textContent}`);
     
-    
     }
     resetGameAfterDelay();
     resetTotal();
     total = 0;
     totalDealer = 0
+  
   }  
-
-
   let chips = localStorage.getItem("chips") ? parseInt(localStorage.getItem("chips")) : 200; 
 
   // Aquí va la lógica para la doble apuesta

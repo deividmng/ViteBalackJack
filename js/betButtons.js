@@ -35,21 +35,31 @@ export function bet(amount) {
         alert("No tienes suficientes fichas para realizar esta apuesta."); // Muestra un mensaje de error
     }
 }
+
+
 export function win() {
-    // Multiplicar el totalbet por 2 y guardarlo en la variable 'winnings'
-    let winnings = totalbet * 2;
-    // Actualizar el totalbet de las fichas y el totalbet de la apuesta
-    chips += winnings; // Agregar las ganancias a las fichas del jugador
-    totalbet = 0; // Reiniciar el totalbet de la apuesta (si deseas hacerlo)
-    // Actualizar el DOM con los nuevos valores
-    chipsCount.textContent = `chips ${chips} `;  // Actualiza el valor de las fichas en el DOM
-    totalCount.textContent = totalbet;  // Reinicia el valor de totalbet en el DOM (si lo deseas reiniciar)
+  // Multiplicar el totalbet por 2 y guardarlo en la variable 'winnings'
+  let winnings = totalbet * 2;
+  console.log(`totalll ===== bet ${totalbet}`);
   
-    // Imprimir el resultado para verificar en la consola
-    console.log('Resultado después de ganar:');
-    console.log('Winnings: ', winnings);
-    console.log('Total (debe ser 0 ahora): ', totalbet);
-    console.log('Chips después de ganar: ', chips);
+  // Actualizar las fichas con las ganancias
+  chips += winnings; // Agregar las ganancias a las fichas del jugador
+
+  // Restablecer totalbet a 0 (si lo deseas reiniciar)
+  totalbet = 0;
+
+  // Actualizar el DOM con los nuevos valores
+  chipsCount.textContent = `chips ${chips} `;  // Actualiza el valor de las fichas en el DOM
+  totalCount.textContent = totalbet;  // Reinicia el valor de totalbet en el DOM (si lo deseas reiniciar)
+
+  // Guardar el nuevo valor de chips en localStorage
+  localStorage.setItem("chips", chips); // Guardar las fichas en localStorage
+
+  // Imprimir el resultado para verificar en la consola
+  console.log('Resultado después de ganar:');
+  console.log('Winnings: when I win the bet ', winnings);
+  console.log('Total (debe ser 0 ahora)=====================: ', totalbet);
+  console.log('Chips después de ganar: ', chips);
 }
 
 
