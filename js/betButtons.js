@@ -1,12 +1,15 @@
+
 // Elemento donde se muestra el totalbet
 const totalCount = document.getElementById("total-bet");
 const chipsCount = document.getElementById("chips");
 
-let chips = 200; // Fichas iniciales
+let chips = localStorage.getItem("chips") ? parseInt(localStorage.getItem("chips")) : 200; // Valor inicial 200 si no existe en localStorage
+
+ // Fichas iniciales
 let totalbet = 0;   // Total inicial
 
 // Inicializa el valor de las fichas en el DOM
-chipsCount.textContent = chips;
+chipsCount.textContent = `chips ${chips}`;
 
 // Función para obtener el valor actual de totalbet
 export function getTotal() {
@@ -35,11 +38,9 @@ export function bet(amount) {
 export function win() {
     // Multiplicar el totalbet por 2 y guardarlo en la variable 'winnings'
     let winnings = totalbet * 2;
-
     // Actualizar el totalbet de las fichas y el totalbet de la apuesta
     chips += winnings; // Agregar las ganancias a las fichas del jugador
     totalbet = 0; // Reiniciar el totalbet de la apuesta (si deseas hacerlo)
-
     // Actualizar el DOM con los nuevos valores
     chipsCount.textContent = `chips ${chips} `;  // Actualiza el valor de las fichas en el DOM
     totalCount.textContent = totalbet;  // Reinicia el valor de totalbet en el DOM (si lo deseas reiniciar)
@@ -118,29 +119,3 @@ console.log("Chips después de limpiar: ", chips);
 
 
 
-
-//! here it goes the doble bet 
-const dobleBet = document.getElementById("doble-bet");
-
-dobleBet.addEventListener('click', () => {
-  // Verificar si el jugador tiene suficientes fichas para duplicar
-  if (chips >= totalbet) {
-    console.log("Botón dobleBet fue clickeado");
-
-    // Reducir las fichas disponibles en función del duplicado
-    chips -= totalbet;
-
-    // Duplicar el total de la apuesta
-    totalbet *= 2;
-
-    // Actualizar el DOM con los nuevos valores
-    chipsCount.textContent = `chips ${chips}`;
-    totalCount.textContent = totalbet;
-
-    console.log(`El valor actual de totalbet después de duplicar: ${totalbet}`);
-    console.log(`Fichas restantes: ${chips}`);
-  } else {
-    // Mensaje de error si no hay suficientes fichas
-    alert("No tienes suficientes fichas para duplicar la apuesta.");
-  }
-});
